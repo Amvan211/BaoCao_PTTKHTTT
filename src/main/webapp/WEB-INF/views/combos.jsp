@@ -1,0 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><%@ include file="common.jspf" %><h1>Quản lý combo</h1>
+<form class="panel gridform" method="post"><input type="hidden" name="csrf" value="<%=Web.safe((String)session.getAttribute("csrf"))%>">
+<label>Mã combo<input name="code" required></label><label>Tên combo<input name="name" required></label><label>Giá bán<input name="price" type="number" min="0" step=".01" required></label><button name="action" value="save">Lưu combo</button></form>
+<table><tr><th>Mã</th><th>Tên</th><th>Giá</th><th>Trạng thái</th><th>Thao tác</th></tr>
+<% for(Map<String,Object> row:(List<Map<String,Object>>)request.getAttribute("rows")){ %><tr><td><%=Web.safe(String.valueOf(row.get("code")))%></td><td><%=Web.safe(String.valueOf(row.get("name")))%></td><td><%=row.get("price")%></td><td><%=Web.safe(String.valueOf(row.get("status")))%></td><td><form method="post"><input type="hidden" name="csrf" value="<%=Web.safe((String)session.getAttribute("csrf"))%>"><input type="hidden" name="code" value="<%=Web.safe(String.valueOf(row.get("code")))%>"><button name="action" value="stop">Ngừng áp dụng</button></form></td></tr><% } %></table>
+<p class="muted">Bản demo quản lý thông tin combo; chưa có giao diện cấu hình danh sách món thuộc combo.</p></main></body></html>

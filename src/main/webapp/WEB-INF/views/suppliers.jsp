@@ -1,0 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><%@ include file="common.jspf" %><h1>Quản lý nhà cung cấp</h1>
+<form class="panel gridform" method="post"><input type="hidden" name="csrf" value="<%=Web.safe((String)session.getAttribute("csrf"))%>">
+<label>Mã NCC<input name="code" required></label><label>Tên NCC<input name="name" required></label><label>SĐT<input name="phone"></label><label>Địa chỉ<input name="address"></label><button name="action" value="save">Thêm / cập nhật</button></form>
+<table><tr><th>Mã</th><th>Tên</th><th>SĐT</th><th>Trạng thái</th><th>Thao tác</th></tr>
+<% for(Map<String,String> row:(List<Map<String,String>>)request.getAttribute("rows")){ %><tr><td><%=Web.safe(row.get("code"))%></td><td><%=Web.safe(row.get("name"))%></td><td><%=Web.safe(row.get("phone"))%></td><td><%=Web.safe(row.get("status"))%></td><td><form method="post"><input type="hidden" name="csrf" value="<%=Web.safe((String)session.getAttribute("csrf"))%>"><input type="hidden" name="code" value="<%=Web.safe(row.get("code"))%>"><button name="action" value="stop">Ngừng hợp tác</button></form></td></tr><% } %></table></main></body></html>

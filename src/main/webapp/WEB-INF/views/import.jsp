@@ -1,0 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><%@ include file="common.jspf" %><h1>Nhập nguyên liệu</h1><section class="panel"><form method="post" class="gridform">
+<input type="hidden" name="csrf" value="<%=Web.safe((String)session.getAttribute("csrf"))%>">
+<label>Nhà cung cấp<select name="supplier" required><option value="">Chọn nhà cung cấp</option><% for(Map<String,String> x:(List<Map<String,String>>)request.getAttribute("suppliers")){ %><option value="<%=Web.safe(x.get("id"))%>"><%=Web.safe(x.get("name"))%></option><% } %></select></label>
+<label>Nguyên liệu<select name="ingredient" required><option value="">Chọn nguyên liệu</option><% for(Map<String,String> x:(List<Map<String,String>>)request.getAttribute("ingredients")){ %><option value="<%=Web.safe(x.get("id"))%>"><%=Web.safe(x.get("name"))%></option><% } %></select></label>
+<label>Số lượng<input type="number" name="quantity" min="0.001" step=".001" required></label><label>Đơn giá nhập<input type="number" name="price" min="0" step=".01" required></label>
+<button>Ghi nhận phiếu nhập</button></form><p class="muted">Bản demo ghi nhận một dòng nguyên liệu trên mỗi phiếu. Phiếu và cập nhật tồn kho nằm trong cùng giao dịch.</p></section></main></body></html>
